@@ -60,8 +60,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\MyMovementSystem.cs" />
-    <Compile Include="Assets\MyMovementComponent.cs" />
+    <Compile Include="Assets\Scripts\BoostState.cs" />
+    <Compile Include="Assets\Scripts\Components\BoostComponent.cs" />
+    <Compile Include="Assets\Scripts\Components\PlayerInputComponent.cs" />
+    <Compile Include="Assets\Scripts\Components\PlayerSettingsComponent.cs" />
+    <Compile Include="Assets\Scripts\Components\VehicleSettingsComponent.cs" />
+    <Compile Include="Assets\Scripts\Components\VelocityComponent.cs" />
+    <Compile Include="Assets\Scripts\InputNames.cs" />
+    <Compile Include="Assets\Scripts\Systems\BoostSystem.cs" />
+    <Compile Include="Assets\Scripts\Systems\PlayerInputSystem.cs" />
+    <Compile Include="Assets\Scripts\Systems\VelocitySystem.cs" />
     <Reference Include="Unity.Entities.Properties">
       <HintPath>/Users/magnus/Dev/SquareRacer/Library/ScriptAssemblies/Unity.Entities.Properties.dll</HintPath>
     </Reference>
