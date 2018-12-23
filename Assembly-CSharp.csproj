@@ -66,7 +66,9 @@
     <Compile Include="Assets\Scripts\Components\PlayerSettingsComponent.cs" />
     <Compile Include="Assets\Scripts\Components\VehicleSettingsComponent.cs" />
     <Compile Include="Assets\Scripts\Components\VelocityComponent.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\InputNames.cs" />
+    <Compile Include="Assets\Scripts\SpawnPoint.cs" />
     <Compile Include="Assets\Scripts\Systems\BoostSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\PlayerInputSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\VelocitySystem.cs" />

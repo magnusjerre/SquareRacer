@@ -25,8 +25,6 @@ namespace Jerre
                 input.direction = new Vector2(x, y).normalized;
                 input.fire = Input.GetButtonDown(InputNames.FIRE + number);
                 input.boost = Input.GetButton(InputNames.BOOST + number) || Input.GetButtonDown(InputNames.BOOST + number);
-                input.join = Input.GetButtonDown(InputNames.JOIN + number);
-                input.leave = Input.GetButtonDown(InputNames.LEAVE + number);
             }
         }
     }

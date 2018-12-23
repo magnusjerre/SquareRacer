@@ -8,8 +8,6 @@ namespace Jerre
         public Vector2 direction;
         public bool fire;
         public bool boost;
-        public bool join;
-        public bool leave;
 
         public float2 getDirectionAsFloat2()
         {
