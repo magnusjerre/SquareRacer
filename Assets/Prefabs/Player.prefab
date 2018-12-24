@@ -156,8 +156,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 10
-  inertia: 0.2
-  breakInertia: 0.05
+  acceleration: 40
+  deceleration: 10
 --- !u!114 &114105558362259682
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -182,10 +182,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxBoostTime: 1
-  speed: 20
-  boosting: 0
-  timeLeftOfBoost: 0
-  state: 0
+  acceleration: 60
+  breakFactor: 0.9
+  breakDeceleration: 150
+  speed: 30
+  timeLeftOfBoost: 1
+  state: 1
 --- !u!114 &114731630943417378
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -211,8 +213,6 @@ MonoBehaviour:
   direction: {x: 0, y: 0}
   fire: 0
   boost: 0
-  join: 0
-  leave: 0
 --- !u!143 &143148081920377820
 CharacterController:
   m_ObjectHideFlags: 1

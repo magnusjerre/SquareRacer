@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using Unity.Entities;
 
 namespace Jerre
@@ -19,21 +18,36 @@ namespace Jerre
             var dt = Time.deltaTime;
 
             foreach (var entity in GetEntities<Data>()) {
-                var controller = entity.controller;
-                var input = entity.input;
-                var boost = entity.boost;
-                var velocity = entity.velocity;
-                var vehicle = entity.vehicle;
-                var speed = boost.state == BoostState.BOOSTING ? boost.speed : vehicle.maxSpeed;
-
-                var inputSpeed = input.DirectionAsVector3() * speed;
-                var angleBetweenOldSpeedAndInputSpeed = Vector3.Angle(velocity.velocity.normalized, input.DirectionAsVector3());
-                var inertia = angleBetweenOldSpeedAndInputSpeed >= 90 || System.Math.Abs(input.direction.sqrMagnitude) < 0.0001f ? vehicle.breakInertia : vehicle.inertia;
-                var diff = (inputSpeed - velocity.velocity) * inertia;
-                velocity.velocity = velocity.velocity + diff;
-
-                controller.Move(velocity.velocity * dt);
+                AccelerationBasedVelocityHandler(entity, dt);
             }
+        }
+
+        private void AccelerationBasedVelocityHandler(Data entity, float dt) {
+            var controller = entity.controller;
+            var input = entity.input;
+            var boost = entity.boost;
+            var vel = entity.velocity;
+            var vehicle = entity.vehicle;
+
+            var oldVelocity = vel.velocity;
+            var speed = boost.state == BoostState.BOOSTING ? boost.speed : vehicle.maxSpeed;
+            var acceleration = boost.state == BoostState.BOOSTING ? boost.acceleration * dt: vehicle.acceleration * dt;
+            var deceleration = input.NoMovement ? (-oldVelocity.normalized) * vehicle.deceleration : Vector3.zero;
+
+            var inputVelocity = input.DirectionAsVector3() * acceleration;
+            var newVelocity = oldVelocity + deceleration * dt + inputVelocity;
+            var maxSpeedSqr = boost.state == BoostState.BOOSTING ? boost.SpeedSqr : vehicle.SpeedSquared;
+            if (newVelocity.sqrMagnitude > maxSpeedSqr) {
+                if (newVelocity.sqrMagnitude > maxSpeedSqr * vehicle.snapToMaxSpeedFactor) {
+                    var decel = newVelocity.normalized * boost.breakDeceleration * dt;
+                    newVelocity = Utils.Max(newVelocity.normalized * speed, newVelocity - decel);
+                } else {
+                    newVelocity = newVelocity.normalized * speed;
+                }
+            }
+
+            vel.velocity = newVelocity;
+            controller.Move(vel.velocity * dt);
         }
     }
 }

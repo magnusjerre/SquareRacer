@@ -8,6 +8,7 @@ namespace Jerre
         public Vector2 direction;
         public bool fire;
         public bool boost;
+        public bool NoMovement => direction.sqrMagnitude <= Utils.ZERO_DELTA;
 
         public float2 getDirectionAsFloat2()
         {
@@ -17,5 +18,6 @@ namespace Jerre
         public Vector3 DirectionAsVector3() {
             return new Vector3(direction.x, 0, direction.y);
         }
+
     }
 }

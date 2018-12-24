@@ -72,6 +72,7 @@
     <Compile Include="Assets\Scripts\Systems\BoostSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\PlayerInputSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\VelocitySystem.cs" />
+    <Compile Include="Assets\Scripts\Utils.cs" />
     <Reference Include="Unity.Entities.Properties">
       <HintPath>/Users/magnus/Dev/SquareRacer/Library/ScriptAssemblies/Unity.Entities.Properties.dll</HintPath>
     </Reference>
