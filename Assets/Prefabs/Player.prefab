@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114105558362259682}
   - component: {fileID: 114187990271601538}
   - component: {fileID: 114102167055006198}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 33159889111721960}
   - component: {fileID: 23536191682722780}
   - component: {fileID: 65315431712204492}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,6 +158,7 @@ MonoBehaviour:
   maxSpeed: 10
   acceleration: 40
   deceleration: 10
+  snapToMaxSpeedFactor: 1.05
 --- !u!114 &114105558362259682
 MonoBehaviour:
   m_ObjectHideFlags: 1
