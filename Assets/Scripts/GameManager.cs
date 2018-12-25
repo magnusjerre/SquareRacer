@@ -9,6 +9,7 @@ namespace Jerre
         public PlayerSettingsComponent playerPrefab;
 
         public Dictionary<int, PlayerSettingsComponent> instantiatedPlayers;
+        private Dictionary<PlayerSettingsComponent, int> playerScores;
         private SpawnPoint[] spawnPoints;
 
         private int nextSpawnIndex = 0;
@@ -16,6 +17,7 @@ namespace Jerre
         private void Awake()
         {
             instantiatedPlayers = new Dictionary<int, PlayerSettingsComponent>();
+            playerScores = new Dictionary<PlayerSettingsComponent, int>();
         }
 
         // Use this for initialization
@@ -59,6 +61,7 @@ namespace Jerre
             var player = Instantiate(playerPrefab, spawnPoint.transform.position, spawnPoint.transform.rotation);
             player.playerNumber = playerNumber;
             instantiatedPlayers.Add(playerNumber, player);
+            playerScores.Add(player, 0);
         }
 
         void RemovePlayer(int playerNumber) {
@@ -67,7 +70,14 @@ namespace Jerre
             }
             var player = instantiatedPlayers[playerNumber];
             instantiatedPlayers.Remove(playerNumber);
+            playerScores.Remove(player);
             Destroy(player.gameObject);
+        }
+
+        public void RegisterPointsForPlayer(PlayerSettingsComponent player, int points)
+        {
+            playerScores[player] = playerScores[player] + points;
+            Debug.LogFormat("Player[{0}] scored {1} point. Total points: {2}", player.playerNumber, points, playerScores[player]);
         }
     }
 }

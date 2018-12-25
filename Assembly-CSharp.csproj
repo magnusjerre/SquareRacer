@@ -68,6 +68,12 @@
     <Compile Include="Assets\Scripts\Components\VelocityComponent.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\InputNames.cs" />
+    <Compile Include="Assets\Scripts\OldStyleScripts\IObservable.cs" />
+    <Compile Include="Assets\Scripts\OldStyleScripts\IObserver.cs" />
+    <Compile Include="Assets\Scripts\OldStyleScripts\Observable.cs" />
+    <Compile Include="Assets\Scripts\OldStyleScripts\TargetVisited.cs" />
+    <Compile Include="Assets\Scripts\OldStyleScripts\VisitableTarget.cs" />
+    <Compile Include="Assets\Scripts\OldStyleScripts\VisitableTargetHandler.cs" />
     <Compile Include="Assets\Scripts\SpawnPoint.cs" />
     <Compile Include="Assets\Scripts\Systems\BoostSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\PlayerInputSystem.cs" />
