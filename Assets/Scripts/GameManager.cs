@@ -17,6 +17,8 @@ namespace Jerre
         private int nextSpawnIndex = 0;
         public int maxScore = 10;
 
+        public bool playing = false;
+
         private void Awake()
         {
             instantiatedPlayers = new Dictionary<int, PlayerSettingsComponent>();
@@ -84,7 +86,7 @@ namespace Jerre
             playerScores.Remove(player);
 
             Destroy(player.gameObject);
-            Destroy(playerScore);
+            Destroy(playerScore.gameObject);
 
             var counter = 0;
             foreach (var score in playerScores.Values) {
@@ -99,6 +101,18 @@ namespace Jerre
             score.playerScore += points;
             score.GetComponent<PlayerScoreUIElement>().SetScore(score.playerScore, maxScore);
             Debug.LogFormat("Player[{0}] scored {1} point. Total points: {2}", player.playerNumber, points, playerScores[player]);
+
+            if (score.playerScore == maxScore) {
+                ResetScores();
+            }
+        }
+
+        private void ResetScores() {
+            foreach (var player in playerScores.Values) {
+                player.playerScore = 0;
+                player.maxScore = maxScore;
+                player.GetComponent<PlayerScoreUIElement>().SetScore(0, maxScore);
+            }
         }
     }
 }

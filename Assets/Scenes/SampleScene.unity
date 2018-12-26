@@ -1677,6 +1677,8 @@ MonoBehaviour:
   playerScoreUIPrefab: {fileID: 114782988455835446, guid: 89c14ef32b8ab417b938ac935e1cd11d,
     type: 2}
   scoreCanvas: {fileID: 339589288}
+  maxScore: 3
+  playing: 0
 --- !u!114 &1806915391
 MonoBehaviour:
   m_ObjectHideFlags: 0

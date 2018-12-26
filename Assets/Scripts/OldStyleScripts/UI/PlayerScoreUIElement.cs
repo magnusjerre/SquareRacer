@@ -10,12 +10,15 @@ namespace Jerre
         private Text scoreText;
         private Image backgroundImage;
 
+        private PlayerScoreComponent scoreComponent;
+
         // Use this for initialization
         void Start()
         {
             scoreText = GetComponentInChildren<Text>();
             backgroundImage = GetComponent<Image>();
-            Reset(0, 10);
+            scoreComponent = GetComponent<PlayerScoreComponent>();
+            Reset(scoreComponent.playerScore, scoreComponent.maxScore);
             SetNumberInLine(numberInLine);
         }
 
