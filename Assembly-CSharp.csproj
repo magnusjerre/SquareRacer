@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\BoostState.cs" />
     <Compile Include="Assets\Scripts\Components\BoostComponent.cs" />
     <Compile Include="Assets\Scripts\Components\PlayerInputComponent.cs" />
+    <Compile Include="Assets\Scripts\Components\PlayerScoreComponent.cs" />
     <Compile Include="Assets\Scripts\Components\PlayerSettingsComponent.cs" />
     <Compile Include="Assets\Scripts\Components\VehicleSettingsComponent.cs" />
     <Compile Include="Assets\Scripts\Components\VelocityComponent.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Assets\Scripts\OldStyleScripts\IObserver.cs" />
     <Compile Include="Assets\Scripts\OldStyleScripts\Observable.cs" />
     <Compile Include="Assets\Scripts\OldStyleScripts\TargetVisited.cs" />
+    <Compile Include="Assets\Scripts\OldStyleScripts\UI\PlayerScoreUIElement.cs" />
     <Compile Include="Assets\Scripts\OldStyleScripts\VisitableTarget.cs" />
     <Compile Include="Assets\Scripts\OldStyleScripts\VisitableTargetHandler.cs" />
     <Compile Include="Assets\Scripts\SpawnPoint.cs" />

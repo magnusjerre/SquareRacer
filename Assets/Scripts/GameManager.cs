@@ -7,17 +7,20 @@ namespace Jerre
     public class GameManager : MonoBehaviour
     {
         public PlayerSettingsComponent playerPrefab;
+        public PlayerScoreUIElement playerScoreUIPrefab;
 
+        public Canvas scoreCanvas;
         public Dictionary<int, PlayerSettingsComponent> instantiatedPlayers;
-        private Dictionary<PlayerSettingsComponent, int> playerScores;
+        private Dictionary<PlayerSettingsComponent, PlayerScoreComponent> playerScores;
         private SpawnPoint[] spawnPoints;
 
         private int nextSpawnIndex = 0;
+        public int maxScore = 10;
 
         private void Awake()
         {
             instantiatedPlayers = new Dictionary<int, PlayerSettingsComponent>();
-            playerScores = new Dictionary<PlayerSettingsComponent, int>();
+            playerScores = new Dictionary<PlayerSettingsComponent, PlayerScoreComponent>();
         }
 
         // Use this for initialization
@@ -61,7 +64,13 @@ namespace Jerre
             var player = Instantiate(playerPrefab, spawnPoint.transform.position, spawnPoint.transform.rotation);
             player.playerNumber = playerNumber;
             instantiatedPlayers.Add(playerNumber, player);
-            playerScores.Add(player, 0);
+
+            //Add score UI element and score component
+            var playerScore = Instantiate(playerScoreUIPrefab, scoreCanvas.transform);
+            playerScore.numberInLine = playerNumber - 1;
+            var playerScoreComponent = playerScore.GetComponent<PlayerScoreComponent>();
+            playerScoreComponent.maxScore = maxScore;
+            playerScores.Add(player, playerScoreComponent);
         }
 
         void RemovePlayer(int playerNumber) {
@@ -70,13 +79,25 @@ namespace Jerre
             }
             var player = instantiatedPlayers[playerNumber];
             instantiatedPlayers.Remove(playerNumber);
+
+            var playerScore = playerScores[player];
             playerScores.Remove(player);
+
             Destroy(player.gameObject);
+            Destroy(playerScore);
+
+            var counter = 0;
+            foreach (var score in playerScores.Values) {
+                var uiElement = score.GetComponent<PlayerScoreUIElement>();
+                uiElement.SetNumberInLine(counter++);
+            }
         }
 
         public void RegisterPointsForPlayer(PlayerSettingsComponent player, int points)
         {
-            playerScores[player] = playerScores[player] + points;
+            var score = playerScores[player];
+            score.playerScore += points;
+            score.GetComponent<PlayerScoreUIElement>().SetScore(score.playerScore, maxScore);
             Debug.LogFormat("Player[{0}] scored {1} point. Total points: {2}", player.playerNumber, points, playerScores[player]);
         }
     }
