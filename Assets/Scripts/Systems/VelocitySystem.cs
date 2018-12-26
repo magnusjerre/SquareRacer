@@ -38,12 +38,9 @@ namespace Jerre
             var newVelocity = oldVelocity + deceleration * dt + inputVelocity;
             var maxSpeedSqr = boost.state == BoostState.BOOSTING ? boost.SpeedSqr : vehicle.SpeedSquared;
             if (newVelocity.sqrMagnitude > maxSpeedSqr) {
-                if (newVelocity.sqrMagnitude > maxSpeedSqr * vehicle.snapToMaxSpeedFactor) {
-                    var decel = newVelocity.normalized * boost.breakDeceleration * dt;
-                    newVelocity = Utils.Max(newVelocity.normalized * speed, newVelocity - decel);
-                } else {
-                    newVelocity = newVelocity.normalized * speed;
-                }
+                var newVelocityDirection = newVelocity.normalized;
+                var decel = newVelocityDirection * boost.breakDeceleration * dt;
+                newVelocity = Utils.Max(newVelocityDirection * speed, newVelocity - decel);
             }
 
             vel.velocity = newVelocity;
