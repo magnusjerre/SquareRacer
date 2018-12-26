@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Jerre
 {
@@ -16,8 +17,10 @@ namespace Jerre
 
         private int nextSpawnIndex = 0;
         public int maxScore = 10;
+        public int countDownTimeInSeconds = 3;
+        public int nextCountDown;
 
-        public bool playing = false;
+        public Text countdownText;
 
         private void Awake()
         {
@@ -29,6 +32,7 @@ namespace Jerre
         void Start()
         {
             spawnPoints = GameObject.FindObjectsOfType<SpawnPoint>();
+            ResetGame();
         }
 
         // Update is called once per frame
@@ -113,6 +117,25 @@ namespace Jerre
                 player.maxScore = maxScore;
                 player.GetComponent<PlayerScoreUIElement>().SetScore(0, maxScore);
             }
+        }
+
+        private void CountDown() {
+            if (nextCountDown == -1) {
+                countdownText.enabled = false;
+            } else if (nextCountDown == 0) {
+                countdownText.text = "Go!";
+                GameInfo.gameState = GameState.PLAYING;
+                nextCountDown--;
+                Invoke("CountDown", 1f);
+            } else {
+                countdownText.text = "" + nextCountDown--;
+                Invoke("CountDown", 1f);
+            }
+        }
+
+        private void ResetGame() {
+            nextCountDown = countDownTimeInSeconds;
+            CountDown();
         }
     }
 }

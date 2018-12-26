@@ -67,7 +67,9 @@
     <Compile Include="Assets\Scripts\Components\PlayerSettingsComponent.cs" />
     <Compile Include="Assets\Scripts\Components\VehicleSettingsComponent.cs" />
     <Compile Include="Assets\Scripts\Components\VelocityComponent.cs" />
+    <Compile Include="Assets\Scripts\GameInfo.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\GameState.cs" />
     <Compile Include="Assets\Scripts\InputNames.cs" />
     <Compile Include="Assets\Scripts\OldStyleScripts\IObservable.cs" />
     <Compile Include="Assets\Scripts\OldStyleScripts\IObserver.cs" />

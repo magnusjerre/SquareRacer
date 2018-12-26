@@ -14,6 +14,10 @@ namespace Jerre
 
         protected override void OnUpdate()
         {
+            if (GameInfo.gameState != GameState.PLAYING) {
+                return;
+            }
+
             foreach (var entity in GetEntities<Data>()) {
                 var input = entity.input;
                 var settings = entity.settings;
