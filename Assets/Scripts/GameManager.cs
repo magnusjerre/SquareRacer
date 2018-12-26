@@ -107,7 +107,7 @@ namespace Jerre
             Debug.LogFormat("Player[{0}] scored {1} point. Total points: {2}", player.playerNumber, points, playerScores[player]);
 
             if (score.playerScore == maxScore) {
-                ResetScores();
+                ResetGame();
             }
         }
 
@@ -134,7 +134,20 @@ namespace Jerre
         }
 
         private void ResetGame() {
+            foreach(var player in instantiatedPlayers.Values) {
+                var playerInput = player.GetComponent<PlayerInputComponent>();
+                playerInput.direction = Vector3.zero;
+                playerInput.fire = false;
+                playerInput.boost = false;
+
+                var boost = player.GetComponent<BoostComponent>();
+                boost.timeLeftOfBoost = boost.maxBoostTime;
+                boost.state = BoostState.NOTHING;
+            }
+            GameInfo.gameState = GameState.AWAITING_GAME_START;
             nextCountDown = countDownTimeInSeconds;
+            countdownText.enabled = true;
+            Invoke("ResetScores", countDownTimeInSeconds);
             CountDown();
         }
     }
