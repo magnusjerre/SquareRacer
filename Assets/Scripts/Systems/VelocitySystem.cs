@@ -45,6 +45,7 @@ namespace Jerre
 
             vel.velocity = newVelocity;
             controller.Move(vel.velocity * dt);
+            input.transform.LookAt(input.transform.position + newVelocity);
         }
     }
 }

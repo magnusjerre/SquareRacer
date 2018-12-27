@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 114187990271601538}
   - component: {fileID: 114102167055006198}
   - component: {fileID: 65093504750622782}
+  - component: {fileID: 114588090983166772}
   m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
@@ -59,7 +60,7 @@ Transform:
   m_GameObject: {fileID: 1293487623406968}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1.5}
   m_Children:
   - {fileID: 4710163839737326}
   m_Father: {fileID: 0}
@@ -144,6 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 1
+  receiveInput: 1
 --- !u!114 &114102167055006198
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -158,7 +160,6 @@ MonoBehaviour:
   maxSpeed: 10
   acceleration: 40
   deceleration: 10
-  snapToMaxSpeedFactor: 1.05
   radius: 1
 --- !u!114 &114105558362259682
 MonoBehaviour:
@@ -185,11 +186,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxBoostTime: 1
   acceleration: 60
-  breakFactor: 0.9
   breakDeceleration: 150
   speed: 30
   timeLeftOfBoost: 1
   state: 1
+--- !u!114 &114588090983166772
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1293487623406968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0ca9c6c4b14b45d0ab0bb9450fbc74c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minTimeBetweenFires: 1
+  speed: 30
+  timeSinceLastFire: 0
 --- !u!114 &114731630943417378
 MonoBehaviour:
   m_ObjectHideFlags: 1
