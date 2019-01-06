@@ -29,7 +29,7 @@ namespace Jerre
 
                     input.direction = new Vector2(x, y).normalized;
                     input.fire = Input.GetButtonDown(InputNames.FIRE + number);
-                    input.boost = Input.GetButton(InputNames.BOOST + number) || Input.GetButtonDown(InputNames.BOOST + number);
+                    input.boost = Input.GetButton(InputNames.BOOST + number) || Input.GetButtonDown(InputNames.BOOST + number) || Mathf.Abs(Input.GetAxis(InputNames.BOOST + number)) > 0.2;
                 } else {
                     input.direction = Vector2.zero;
                     input.fire = false;
